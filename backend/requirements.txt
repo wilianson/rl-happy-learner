@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+websockets
+gymnasium[classic-control,toy-text]
+numpy
+torch
+Pillow
+pygame

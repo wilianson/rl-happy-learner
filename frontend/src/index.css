@@ -1,0 +1,113 @@
+/* ═══════════════════════════════════════════════════
+   RL Lab — Design System
+   Premium dark theme with glassmorphism
+   ═══════════════════════════════════════════════════ */
+
+/* ─── CSS Custom Properties ─── */
+:root {
+  /* Core palette */
+  --bg-primary: #0a0b10;
+  --bg-secondary: #111219;
+  --bg-tertiary: #181920;
+  --bg-surface: rgba(24, 25, 32, 0.7);
+  --bg-glass: rgba(255, 255, 255, 0.03);
+  --bg-glass-hover: rgba(255, 255, 255, 0.06);
+
+  /* Accent — electric cyan / violet */
+  --accent-primary: #6c63ff;
+  --accent-secondary: #00d4ff;
+  --accent-tertiary: #ff6bac;
+  --accent-success: #34d399;
+  --accent-warning: #fbbf24;
+  --accent-error: #f87171;
+
+  /* Gradients */
+  --gradient-accent: linear-gradient(135deg, #6c63ff 0%, #00d4ff 100%);
+  --gradient-warm: linear-gradient(135deg, #6c63ff 0%, #ff6bac 100%);
+  --gradient-surface: linear-gradient(180deg, rgba(108, 99, 255, 0.08) 0%, transparent 100%);
+  --gradient-glow: radial-gradient(ellipse at center, rgba(108, 99, 255, 0.15), transparent 70%);
+
+  /* Text */
+  --text-primary: #f0f0f5;
+  --text-secondary: #9ca3b0;
+  --text-tertiary: #5a5f72;
+  --text-accent: #a5a0ff;
+
+  /* Borders */
+  --border-primary: rgba(255, 255, 255, 0.06);
+  --border-accent: rgba(108, 99, 255, 0.3);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 24px rgba(108, 99, 255, 0.2);
+  --shadow-glow-strong: 0 0 40px rgba(108, 99, 255, 0.35);
+
+  /* Spacing */
+  --sidebar-width: 340px;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 150ms var(--ease-out);
+  --transition-normal: 250ms var(--ease-out);
+  --transition-slow: 400ms var(--ease-out);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow: hidden;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ─── KaTeX overrides ─── */
+.katex-display {
+  margin: 0.8em 0 !important;
+}
+.katex {
+  font-size: 1em !important;
+  color: var(--text-primary) !important;
+}
