@@ -12,6 +12,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import type { TrainingState } from "../hooks/useTrainingSocket";
+import { getHeatmapColor } from "../utils/heatmap";
 
 ChartJS.register(
   CategoryScale,
@@ -145,22 +146,17 @@ export default function LiveDashboard({
               return <div key={idx} className="heatmap-cell empty" />;
             }
             const maxQForState = Math.max(...qValues[idx]);
-            const normalized = (maxQForState - minQ) / range;
-
-            // Color interpolation: dark purple → cyan
-            const r = Math.round(30 + (0 - 30) * normalized);
-            const g = Math.round(20 + (212 - 20) * normalized);
-            const b = Math.round(60 + (255 - 60) * normalized);
+            const cellColor = getHeatmapColor(maxQForState, minQ, maxQ);
 
             return (
               <div
                 key={idx}
                 className="heatmap-cell"
-                style={{ backgroundColor: `rgb(${r}, ${g}, ${b})` }}
+                style={{ backgroundColor: cellColor }}
                 title={`s=${idx}, max Q=${maxQForState.toFixed(3)}`}
               >
                 <span className="heatmap-cell-value">
-                  {maxQForState.toFixed(2)}
+                  {maxQForState.toFixed(1)}
                 </span>
               </div>
             );

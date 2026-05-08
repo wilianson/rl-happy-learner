@@ -2,7 +2,7 @@ import gymnasium as gym
 import numpy as np
 
 async def run_sarsa(config, emit_state):
-    env_name = config.get("env_name", "CliffWalking-v0")
+    env_name = config.get("env_name", "CliffWalking-v1")
     alpha = config.get("alpha", 0.1)
     gamma = config.get("gamma", 0.99)
     epsilon = config.get("epsilon", 0.1)
@@ -51,7 +51,7 @@ async def run_sarsa(config, emit_state):
     env.close()
 
 async def run_q_learning(config, emit_state):
-    env_name = config.get("env_name", "CliffWalking-v0")
+    env_name = config.get("env_name", "CliffWalking-v1")
     alpha = config.get("alpha", 0.1)
     gamma = config.get("gamma", 0.99)
     epsilon = config.get("epsilon", 0.1)

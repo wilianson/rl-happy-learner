@@ -14,6 +14,7 @@ async def run_value_iteration(config, emit_state):
     theta = config.get("theta", 1e-8)
     
     env = gym.make(env_name, render_mode="rgb_array", is_slippery=False)
+    env.reset()
     V = np.zeros(env.observation_space.n)
     
     iteration = 0
@@ -57,6 +58,7 @@ async def run_policy_iteration(config, emit_state):
     theta = config.get("theta", 1e-8)
     
     env = gym.make(env_name, render_mode="rgb_array", is_slippery=False)
+    env.reset()
     V = np.zeros(env.observation_space.n)
     policy = np.zeros(env.observation_space.n, dtype=int)
     

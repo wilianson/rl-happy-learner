@@ -1,41 +1,77 @@
-# Curso de Aprendizaje por Refuerzo con Gymnasium
+# 🎓 Happy RL Trainer — Plataforma Interactiva de Aprendizaje por Refuerzo
 
-Este repositorio contiene un conjunto de scripts en Python diseñados como material de estudio para iniciarse en el Aprendizaje por Refuerzo (Reinforcement Learning) utilizando la biblioteca oficial `gymnasium`.
+> **Powered by FiloLabs** | Identidad UTEC
 
-## Estructura del Material
+Plataforma educativa interactiva para aprender Reinforcement Learning (RL) de forma práctica. Incluye un backend FastAPI con WebSockets para entrenamiento en tiempo real y un frontend React/Vite con visualizaciones dinámicas.
 
-1. **`01_gymnasium_intro.py`**: Introducción básica a la API de Gymnasium. Muestra cómo instanciar un entorno, obtener observaciones y aplicar acciones aleatorias utilizando el entorno interactivo.
-2. **`02_q_learning.py`**: Implementación de **Q-Learning** (Tabular). Resuelve el entorno `CliffWalking-v0` creando y actualizando una tabla discreta de valores Q basados en la Ecuación de Bellman.
-3. **`03_dqn.py`**: **Deep Q-Network (DQN)**. Combina el concepto de Q-Learning con Redes Neuronales Profundas (usando PyTorch) para resolver `CartPole-v1`, manejando espacios de estado continuos. Introduce el *Replay Buffer* y la *Target Network*.
-4. **`04_reinforce.py`**: Algoritmo **REINFORCE** (Policy Gradient básico). En lugar de estimar el valor de las acciones, optimiza directamente la política (la probabilidad de qué acción tomar) mediante redes neuronales en `CartPole-v1`.
+## 🚀 Plataforma Web (Happy RL Trainer)
 
-## Requisitos
+La plataforma incluye **7 algoritmos** organizados en 4 categorías:
 
-Para ejecutar estos scripts, necesitas tener instalado Python y las siguientes bibliotecas. Puedes instalarlas ejecutando:
+| Categoría | Algoritmos | Entorno |
+|-----------|-----------|---------|
+| Programación Dinámica | Policy Iteration, Value Iteration | FrozenLake-v1 |
+| Monte Carlo | Monte Carlo Control | Blackjack-v1 |
+| Diferencia Temporal | SARSA, Q-Learning | CliffWalking-v1 |
+| Aproximación | Value Function Approx., Deep Q-Network | MountainCar-v0 / CartPole-v1 |
+
+### Características
+
+- 🎥 **Visualización en tiempo real** del agente en el entorno (vía WebSocket)
+- 📈 **Gráfica de recompensa** por episodio en vivo
+- 🔥 **Heatmap Q-values** con normalización correcta (azul oscuro → rojo)
+- 📐 **Teoría matemática** renderizada con KaTeX para cada algoritmo
+- 🎛️ **Hiperparámetros ajustables** mediante sliders interactivos
+
+Para instrucciones de despliegue, ver [`DEPLOYMENT.md`](./DEPLOYMENT.md).
+
+## 📚 Scripts de Estudio (Standalone)
+
+1. **`01_gymnasium_intro.py`**: Introducción básica a la API de Gymnasium.
+2. **`02_q_learning.py`**: Q-Learning tabular en `CliffWalking-v1`.
+3. **`03_dqn.py`**: Deep Q-Network con PyTorch en `CartPole-v1`.
+4. **`04_reinforce.py`**: REINFORCE (Policy Gradient) en `CartPole-v1`.
 
 ```bash
 pip install -r requirements.txt
+python 01_gymnasium_intro.py
 ```
 
-*(Nota: PyTorch puede requerir una instalación específica dependiendo de tu sistema operativo y de si utilizas CUDA. Consulta [pytorch.org](https://pytorch.org/) para el comando exacto).*
+## 🧪 Tests Automatizados
 
-## Cómo Ejecutar
-
-Puedes ejecutar cada archivo de forma independiente desde tu terminal para ver el proceso y gráficas de entrenamiento:
+### Backend (pytest)
 
 ```bash
-python 01_gymnasium_intro.py
-python 02_q_learning.py
-python 03_dqn.py
-python 04_reinforce.py
+python -m pytest backend/tests/ -v
 ```
+
+### Frontend (Vitest)
+
+```bash
+# En la carpeta frontend/
+node node_modules/vitest/vitest.mjs --run
+```
+
+Los tests cubren:
+- Lógica de decaimiento ε multiplicativo en DQN
+- Normalización del heatmap de Q-values (incluyendo el caso de rango cero)
+- Interpolación de colores para el heatmap
+
+## ⚙️ DQN — Epsilon Decay
+
+El parámetro `ε Decay` en DQN usa un **factor multiplicativo** (rango 0.90–1.0):
+
+```
+ε ← max(ε_end, ε × factor)
+```
+
+Un valor de `0.995` reduce ε en 0.5% por paso, produciendo una transición suave de exploración a explotación.
 
 ## Conceptos Clave Implementados
 
-* **Agente y Entorno (Agent & Environment)**: Interacción paso a paso a través de acciones y observaciones.
-* **Recompensa (Reward)**: Señal de retroalimentación que el agente intenta maximizar.
-* **Política (Policy)**: Estrategia que sigue el agente para decidir acciones a partir de un estado.
-* **Funciones de Valor (Value Functions)**: Estimación del retorno esperado a largo plazo (e.g., Q-Values).
-* **Exploración vs Explotación (Epsilon-greedy)**: El balance entre descubrir nuevas estrategias aleatorias o usar la mejor conocida.
-* **Repetición de Experiencia (Experience Replay)**: Memoria utilizada en DQN para romper la correlación temporal entre las muestras de entrenamiento.
-* **Gradiente de Política (Policy Gradient)**: Optimización utilizando logaritmo de probabilidades ponderado por el retorno.
+* **Agente y Entorno**: Interacción paso a paso a través de acciones y observaciones.
+* **Funciones de Valor (Q-Values)**: Estimación del retorno esperado a largo plazo.
+* **Exploración vs Explotación (ε-greedy)**: Balance entre descubrir nuevas estrategias o usar la mejor conocida.
+* **Experience Replay**: Memoria en DQN para romper correlación temporal.
+* **Gradiente de Política**: Optimización directa de la política en REINFORCE.
+

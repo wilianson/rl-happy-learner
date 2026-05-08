@@ -1,4 +1,6 @@
-# 🚀 Guía de Despliegue — RL Lab
+# 🚀 Guía de Despliegue — Happy RL Trainer
+
+> **Powered by FiloLabs** | Identidad UTEC
 
 Guía paso a paso para compilar, ejecutar y desplegar la plataforma educativa interactiva de Reinforcement Learning.
 
@@ -159,6 +161,32 @@ const WS_BASE_URL = "wss://tu-dominio.com/ws/train";
 
 ---
 
+## 🧪 Tests Automatizados
+
+### Backend — pytest
+
+```bash
+# Desde la raíz del proyecto
+python -m pytest backend/tests/ -v
+```
+
+Tests incluidos:
+- `test_epsilon_decay_logic`: Verifica que el decaimiento ε multiplicativo funcione correctamente.
+- `test_dqn_config_loading`: Verifica la carga de configuración del DQN.
+
+### Frontend — Vitest
+
+```bash
+# Desde la carpeta frontend/
+node node_modules/vitest/vitest.mjs --run
+```
+
+Tests incluidos (5 en total en `src/utils/__tests__/heatmap.test.ts`):
+- `normalizeValue`: Rango cero → retorna 0; normalización correcta en [0,1].
+- `interpolateColor`: Azul oscuro para 0, rojo brillante para 1, color medio para 0.5.
+
+---
+
 ## 🐛 Solución de Problemas
 
 | Problema | Solución |
@@ -168,6 +196,7 @@ const WS_BASE_URL = "wss://tu-dominio.com/ws/train";
 | PyTorch no instala | Usa la URL de CPU: `pip install torch --index-url https://download.pytorch.org/whl/cpu` |
 | CORS error en el navegador | El backend ya incluye CORS permisivo (`allow_origins=["*"]`) |
 | Gymnasium render falla | Instala `pip install pygame` para entornos que lo requieran |
+| `npm` bloqueado en PowerShell | Usa `node node_modules/vitest/vitest.mjs --run` directamente |
 
 ---
 
@@ -178,15 +207,17 @@ rl_course_material/
 ├── backend/
 │   ├── main.py                 # Servidor FastAPI + WebSocket
 │   ├── requirements.txt        # Dependencias Python
-│   └── algorithms/
-│       ├── dp.py               # Policy Iteration, Value Iteration
-│       ├── mc.py               # Monte Carlo Control
-│       ├── td.py               # SARSA, Q-Learning
-│       ├── fa.py               # Value Function Approximation
-│       └── dqn.py              # Deep Q-Network
+│   ├── algorithms/
+│   │   ├── dp.py               # Policy Iteration, Value Iteration
+│   │   ├── mc.py               # Monte Carlo Control
+│   │   ├── td.py               # SARSA, Q-Learning
+│   │   ├── fa.py               # Value Function Approximation
+│   │   └── dqn.py              # Deep Q-Network (ε multiplicativo)
+│   └── tests/
+│       └── test_algorithms.py  # pytest: ε decay + config loading
 ├── frontend/
 │   ├── index.html              # Entry point HTML
-│   ├── package.json            # Dependencias Node.js
+│   ├── package.json            # Dependencias Node.js (incluye vitest)
 │   ├── vite.config.ts          # Configuración Vite
 │   └── src/
 │       ├── main.tsx            # React entry point
@@ -201,7 +232,12 @@ rl_course_material/
 │       │   ├── Sidebar.tsx     # Navegación + hiperparámetros
 │       │   ├── TheorySection.tsx # Teoría con KaTeX
 │       │   └── LiveDashboard.tsx # Video + Chart + Heatmap
+│       ├── utils/
+│       │   ├── heatmap.ts      # Utilidad: normalización + colores
+│       │   └── __tests__/
+│       │       └── heatmap.test.ts  # Vitest: 5 tests de heatmap
 │       └── types/
 │           └── react-katex.d.ts # Tipos para react-katex
+├── README.md                   # Documentación principal
 └── DEPLOYMENT.md               # Esta guía
 ```

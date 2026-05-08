@@ -33,11 +33,11 @@ export default function Sidebar({
       {/* Logo */}
       <div className="sidebar-logo">
         <div className="sidebar-logo-icon">
-          <span className="sidebar-logo-glyph">λ</span>
+          <span className="sidebar-logo-glyph">H</span>
         </div>
         <div className="sidebar-logo-text">
-          <h1 className="sidebar-logo-title">RL Lab</h1>
-          <p className="sidebar-logo-subtitle">Interactive Learning</p>
+          <h1 className="sidebar-logo-title">Happy RL</h1>
+          <p className="sidebar-logo-subtitle">Trainer · UTEC</p>
         </div>
       </div>
 
@@ -178,6 +178,14 @@ export default function Sidebar({
             Detener
           </button>
         )}
+      </div>
+
+      {/* Footer FiloLabs */}
+      <div className="sidebar-footer">
+        <div className="powered-by">
+          <span>Powered by</span>
+          <span className="powered-by-brand">FiloLabs</span>
+        </div>
       </div>
     </aside>
   );

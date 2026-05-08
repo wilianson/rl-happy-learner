@@ -22,7 +22,11 @@ async def run_dqn(config, emit_state):
     env_name = config.get("env_name", "CartPole-v1")
     episodes = config.get("episodes", 150)
     gamma = config.get("gamma", 0.99)
-    batch_size = 64
+    batch_size = int(config.get("batch_size", 64))
+    lr = config.get("lr", 1e-3)
+    memory_size = int(config.get("memory_size", 5000))
+    target_update = int(config.get("target_update", 5))
+    epsilon_decay = config.get("epsilon_decay", 0.995)
     
     env = gym.make(env_name, render_mode="rgb_array")
     state_dim = env.observation_space.shape[0]
@@ -33,13 +37,11 @@ async def run_dqn(config, emit_state):
     target_net = DQN(state_dim, action_dim).to(device)
     target_net.load_state_dict(policy_net.state_dict())
     
-    optimizer = optim.Adam(policy_net.parameters(), lr=1e-3)
-    memory = deque(maxlen=5000)
+    optimizer = optim.Adam(policy_net.parameters(), lr=lr)
+    memory = deque(maxlen=memory_size)
     
-    steps_done = 0
-    epsilon_start = 1.0
+    epsilon = 1.0
     epsilon_end = 0.01
-    epsilon_decay = 200
     
     for episode in range(episodes):
         state, _ = env.reset()
@@ -48,8 +50,8 @@ async def run_dqn(config, emit_state):
         step = 0
         
         while not done:
-            epsilon = epsilon_end + (epsilon_start - epsilon_end) * np.exp(-1. * steps_done / epsilon_decay)
-            steps_done += 1
+            # Epsilon decay (multiplicative)
+            epsilon = max(epsilon_end, epsilon * epsilon_decay)
             
             if random.random() > epsilon:
                 with torch.no_grad():
@@ -92,7 +94,7 @@ async def run_dqn(config, emit_state):
                 if frame is not None:
                     await emit_state(episode=episode + 1, step=step, frame=frame, reward=total_reward, done=done)
                 
-        if episode % 5 == 0:
+        if episode % target_update == 0:
             target_net.load_state_dict(policy_net.state_dict())
             
     env.close()

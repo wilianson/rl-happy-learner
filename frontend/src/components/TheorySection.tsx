@@ -1,13 +1,15 @@
-import "katex/dist/katex.min.css";
-import { BlockMath } from "react-katex";
-import type { AlgorithmInfo } from "../data/algorithms";
+import { InlineMath, BlockMath } from "react-katex";
 
-/** Render text with **bold** markdown into React nodes */
-function renderBoldText(text: string): React.ReactNode[] {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+/** Render text with **bold** and $inline math$ markdown into React nodes */
+function renderRichText(text: string): React.ReactNode[] {
+  // Split by bold (**text**) or inline math ($math$)
+  const parts = text.split(/(\*\*[^*]+\*\*|\$[^$]+\$)/g);
   return parts.map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return <strong key={i}>{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith("$") && part.endsWith("$")) {
+      return <InlineMath key={i} math={part.slice(1, -1)} />;
     }
     return <span key={i}>{part}</span>;
   });
@@ -38,7 +40,7 @@ export default function TheorySection({ algorithm }: TheorySectionProps) {
         {theory.sections.map((section, i) => (
           <div key={i} className="theory-card">
             <h3 className="theory-card-heading">{section.heading}</h3>
-            <p className="theory-card-text">{renderBoldText(section.text)}</p>
+            <p className="theory-card-text">{renderRichText(section.text)}</p>
             {section.equation && (
               <div className="theory-equation">
                 <BlockMath math={section.equation} />

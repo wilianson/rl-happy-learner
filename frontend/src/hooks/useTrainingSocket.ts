@@ -22,7 +22,7 @@ export interface TrainingState {
   error: string | null;
 }
 
-const WS_BASE_URL = "ws://localhost:8000/ws/train";
+const WS_BASE_URL = "ws://localhost:8001/ws/train";
 
 export function useTrainingSocket() {
   const [state, setState] = useState<TrainingState>({
