@@ -1,6 +1,7 @@
 import asyncio
 import json
 import base64
+import os
 from io import BytesIO
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
@@ -13,15 +14,24 @@ from algorithms.td import run_sarsa, run_q_learning
 from algorithms.fa import run_value_function_approximation
 from algorithms.dqn import run_dqn
 
-app = FastAPI()
+app = FastAPI(title="Happy RL Trainer API", version="1.0.0")
+
+# En producción, restringe CORS al dominio del frontend via variable de entorno
+FRONTEND_URL = os.getenv("FRONTEND_URL", "*")
+allowed_origins = ["*"] if FRONTEND_URL == "*" else [FRONTEND_URL, "http://localhost:5173"]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint requerido por Render.com"""
+    return {"status": "ok", "service": "Happy RL Trainer Backend"}
 
 def frame_to_base64(frame):
     img = Image.fromarray(frame)

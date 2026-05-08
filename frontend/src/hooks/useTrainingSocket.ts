@@ -22,7 +22,11 @@ export interface TrainingState {
   error: string | null;
 }
 
-const WS_BASE_URL = "ws://localhost:8001/ws/train";
+// En producción, VITE_WS_URL se inyecta como variable de entorno en Vercel/Render
+// En desarrollo local, apunta a localhost:8001
+const WS_BASE_URL =
+  import.meta.env.VITE_WS_URL ?? "ws://localhost:8001/ws/train";
+
 
 export function useTrainingSocket() {
   const [state, setState] = useState<TrainingState>({

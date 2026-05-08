@@ -1,0 +1,13 @@
+# ============================================================
+# Dependencias de PRODUCCIÓN (servidores gratuitos)
+# PyTorch CPU-only se instala via render.yaml / build command
+# NO incluir torch aquí para evitar conflicto de index-url
+# ============================================================
+
+fastapi==0.115.12
+uvicorn[standard]==0.34.3
+websockets==14.2
+gymnasium[classic-control,toy-text]==1.1.1
+numpy==2.2.6
+Pillow==11.2.1
+pygame==2.6.1
