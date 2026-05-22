@@ -43,8 +43,10 @@ pip install -r requirements.txt
 
 ```bash
 cd backend
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
+python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
+
+> **Windows**: Usa siempre `python -m uvicorn` en lugar de `uvicorn` directamente, ya que la carpeta `Scripts` de Python puede no estar en el PATH.
 
 El servidor WebSocket estará disponible en `ws://localhost:8000/ws/train/{algorithm}`.
 
@@ -115,7 +117,7 @@ sudo apt update && sudo apt install python3-pip nodejs npm nginx -y
 
 # Backend con supervisor/systemd
 pip3 install -r backend/requirements.txt
-nohup uvicorn backend.main:app --host 0.0.0.0 --port 8000 &
+nohup python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 &
 
 # Frontend
 cd frontend && npm install && npm run build
@@ -134,7 +136,7 @@ services:
     build: ./backend
     ports:
       - "8000:8000"
-    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    command: python -m uvicorn main:app --host 0.0.0.0 --port 8000
 
   frontend:
     build: ./frontend
@@ -191,6 +193,7 @@ Tests incluidos (5 en total en `src/utils/__tests__/heatmap.test.ts`):
 
 | Problema | Solución |
 |----------|----------|
+| `uvicorn` no se reconoce en Windows | Usa `python -m uvicorn` en lugar de `uvicorn` directamente |
 | Error de conexión WebSocket | Verifica que el backend esté corriendo en el puerto 8000 |
 | `ModuleNotFoundError: gymnasium` | `pip install gymnasium` |
 | PyTorch no instala | Usa la URL de CPU: `pip install torch --index-url https://download.pytorch.org/whl/cpu` |

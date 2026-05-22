@@ -23,9 +23,9 @@ export interface TrainingState {
 }
 
 // En producción, VITE_WS_URL se inyecta como variable de entorno en Vercel/Render
-// En desarrollo local, apunta a localhost:8001
+// En desarrollo local, apunta a localhost:8000
 const WS_BASE_URL =
-  import.meta.env.VITE_WS_URL ?? "ws://localhost:8001/ws/train";
+  import.meta.env.VITE_WS_URL ?? "ws://localhost:8000/ws/train";
 
 
 export function useTrainingSocket() {
@@ -117,7 +117,7 @@ export function useTrainingSocket() {
           ...prev,
           isRunning: false,
           isConnected: false,
-          error: "No se pudo conectar al servidor. ¿Está corriendo el backend en localhost:8000?",
+          error: "No se pudo conectar al servidor. ¿Está corriendo el backend en localhost:8000? Ejecuta: python -m uvicorn main:app --reload --port 8000",
         }));
       };
 

@@ -546,6 +546,71 @@ export const ALGORITHMS: AlgorithmInfo[] = [
       ],
     },
   },
+  {
+    id: "reinforce",
+    name: "REINFORCE (Policy Gradient)",
+    shortName: "PG",
+    category: "approx",
+    envName: "LunarLander-v3",
+    envLabel: "Lunar Lander",
+    icon: "🚀",
+    description:
+      "Aprende una política estocástica directamente maximizando la recompensa esperada mediante ascenso de gradiente, utilizando el teorema de gradiente de política.",
+    params: [
+      {
+        key: "lr",
+        label: "Learning Rate",
+        min: 0.0001,
+        max: 0.05,
+        step: 0.0001,
+        default: 0.01,
+        description: "Tasa de aprendizaje del optimizador Adam para la red de política",
+      },
+      {
+        key: "gamma",
+        label: "γ (Descuento)",
+        min: 0.9,
+        max: 1.0,
+        step: 0.01,
+        default: 0.99,
+        description: "Factor de descuento para recompensas futuras",
+      },
+      {
+        key: "episodes",
+        label: "Episodios",
+        min: 50,
+        max: 5000,
+        step: 50,
+        default: 500,
+        description: "Número total de episodios",
+      },
+    ],
+    theory: {
+      title: "REINFORCE: Algoritmos de Gradiente de Política (Sutton & Barto, Cap. 13)",
+      sections: [
+        {
+          heading: "Idea Central",
+          text: "En lugar de aprender una función de valor para derivar una política, REINFORCE parametriza la política directamente con una red neuronal $\\pi(a|s, \\boldsymbol{\\theta})$ y optimiza los parámetros $\\boldsymbol{\\theta}$ por ascenso de gradiente para maximizar la recompensa total.",
+        },
+        {
+          heading: "Teorema de Gradiente de Política",
+          text: "El gradiente del objetivo esperado de recompensa $J(\\boldsymbol{\\theta})$ es proporcional a la expectativa del retorno por el gradiente del logaritmo de la política:",
+          equation:
+            "\\nabla J(\\boldsymbol{\\theta}) \\propto \\mathbb{E}_{\\pi} \\left[ G_t \\nabla_\\boldsymbol{\\theta} \\ln \\pi(A_t | S_t, \\boldsymbol{\\theta}) \\right]",
+        },
+        {
+          heading: "Regla de Actualización",
+          text: "Muestreamos episodios completos. Para cada paso $t$, actualizamos los pesos $\\boldsymbol{\\theta}$ usando el retorno empírico $G_t$ a partir del tiempo $t$:",
+          equation:
+            "\\boldsymbol{\\theta} \\leftarrow \\boldsymbol{\\theta} + \\alpha G_t \\nabla_\\boldsymbol{\\theta} \\ln \\pi(A_t | S_t, \\boldsymbol{\\theta})",
+        },
+        {
+          heading: "Reducción de Varianza (Baseline)",
+          text: "REINFORCE sufre de alta varianza empírica. Restar una media móvil (baseline) de los retornos $G_t$ reduce la varianza sin sesgar el gradiente esperado, haciendo el aprendizaje mucho más estable.",
+        },
+      ],
+    },
+  },
 ];
 
 export function getAlgorithmById(id: string): AlgorithmInfo | undefined {

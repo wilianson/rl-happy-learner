@@ -33,7 +33,7 @@ async def run_value_iteration(config, emit_state):
             Q[s] = get_q_from_v(env, V, s, gamma)
             
         frame = env.render()
-        await emit_state(episode=iteration, step=0, frame=frame, reward=delta, q_values=Q.tolist(), done=(delta < theta))
+        await emit_state(episode=iteration, step=0, frame=frame, reward=float(delta), q_values=Q.tolist(), done=bool(delta < theta))
         
         if delta < theta:
             break
@@ -48,7 +48,7 @@ async def run_value_iteration(config, emit_state):
         done = terminated or truncated
         frame = env.render()
         step += 1
-        await emit_state(episode=iteration, step=step, frame=frame, reward=reward, q_values=Q.tolist(), done=done)
+        await emit_state(episode=iteration, step=step, frame=frame, reward=float(reward), q_values=Q.tolist(), done=bool(done))
         
     env.close()
 
@@ -90,7 +90,7 @@ async def run_policy_iteration(config, emit_state):
             Q[s] = get_q_from_v(env, V, s, gamma)
             
         frame = env.render()
-        await emit_state(episode=iteration, step=0, frame=frame, reward=0, q_values=Q.tolist(), done=policy_stable)
+        await emit_state(episode=iteration, step=0, frame=frame, reward=0.0, q_values=Q.tolist(), done=bool(policy_stable))
         
         if policy_stable:
             break
@@ -105,6 +105,6 @@ async def run_policy_iteration(config, emit_state):
         done = terminated or truncated
         frame = env.render()
         step += 1
-        await emit_state(episode=iteration, step=step, frame=frame, reward=reward, q_values=Q.tolist(), done=done)
+        await emit_state(episode=iteration, step=step, frame=frame, reward=float(reward), q_values=Q.tolist(), done=bool(done))
         
     env.close()

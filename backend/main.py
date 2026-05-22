@@ -13,6 +13,7 @@ from algorithms.mc import run_monte_carlo
 from algorithms.td import run_sarsa, run_q_learning
 from algorithms.fa import run_value_function_approximation
 from algorithms.dqn import run_dqn
+from algorithms.reinforce import run_reinforce
 
 app = FastAPI(title="Happy RL Trainer API", version="1.0.0")
 
@@ -81,6 +82,8 @@ async def websocket_endpoint(websocket: WebSocket, algorithm: str):
             await run_value_function_approximation(config, emit_state)
         elif algorithm == "dqn":
             await run_dqn(config, emit_state)
+        elif algorithm == "reinforce":
+            await run_reinforce(config, emit_state)
         else:
             await websocket.send_json({"type": "error", "message": "Algorithm not found"})
             
