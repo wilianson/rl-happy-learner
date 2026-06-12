@@ -196,6 +196,7 @@ Tests incluidos (5 en total en `src/utils/__tests__/heatmap.test.ts`):
 | `uvicorn` no se reconoce en Windows | Usa `python -m uvicorn` en lugar de `uvicorn` directamente |
 | Error de conexión WebSocket | Verifica que el backend esté corriendo en el puerto 8000 |
 | `ModuleNotFoundError: gymnasium` | `pip install gymnasium` |
+| Error en entorno Box2D/MuJoCo (PPO/A2C) | Instala extensiones: `pip install gymnasium[box2d] gymnasium[mujoco]` |
 | PyTorch no instala | Usa la URL de CPU: `pip install torch --index-url https://download.pytorch.org/whl/cpu` |
 | CORS error en el navegador | El backend ya incluye CORS permisivo (`allow_origins=["*"]`) |
 | Gymnasium render falla | Instala `pip install pygame` para entornos que lo requieran |
@@ -215,7 +216,12 @@ rl_course_material/
 │   │   ├── mc.py               # Monte Carlo Control
 │   │   ├── td.py               # SARSA, Q-Learning
 │   │   ├── fa.py               # Value Function Approximation
-│   │   └── dqn.py              # Deep Q-Network (ε multiplicativo)
+│   │   ├── dqn.py              # Deep Q-Network (ε multiplicativo)
+│   │   ├── a2c.py              # Advantage Actor-Critic
+│   │   ├── bandit.py           # Multi-Armed Bandit
+│   │   ├── dynaq.py            # Dyna-Q
+│   │   ├── ppo.py              # Proximal Policy Optimization
+│   │   └── reinforce.py        # REINFORCE (Policy Gradient)
 │   └── tests/
 │       └── test_algorithms.py  # pytest: ε decay + config loading
 ├── frontend/

@@ -6,14 +6,15 @@ Plataforma educativa interactiva para aprender Reinforcement Learning (RL) de fo
 
 ## 🚀 Plataforma Web (Happy RL Trainer)
 
-La plataforma incluye **7 algoritmos** organizados en 4 categorías:
+La plataforma incluye **11 algoritmos** organizados en 5 categorías:
 
 | Categoría | Algoritmos | Entorno |
 |-----------|-----------|---------|
+| Multi-Armed Bandits | Multi-Armed Bandit | Custom |
 | Programación Dinámica | Policy Iteration, Value Iteration | FrozenLake-v1 |
 | Monte Carlo | Monte Carlo Control | Blackjack-v1 |
-| Diferencia Temporal | SARSA, Q-Learning | CliffWalking-v1 |
-| Aproximación | Value Function Approx., Deep Q-Network | MountainCar-v0 / CartPole-v1 |
+| Diferencia Temporal | SARSA, Q-Learning, Dyna-Q | CliffWalking-v1 / Taxi-v3 |
+| Aproximación | VFA, DQN, REINFORCE, PPO, A2C | MountainCar / CartPole / LunarLander / Ant |
 
 ### Características
 
