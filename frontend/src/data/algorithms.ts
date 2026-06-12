@@ -25,6 +25,7 @@ export interface AlgorithmInfo {
 }
 
 export const ALGORITHM_CATEGORIES = [
+  { id: "bandit", label: "Multi-Armed Bandits", color: "#f59e0b" },
   { id: "dp", label: "Programación Dinámica", color: "#6c63ff" },
   { id: "mc", label: "Monte Carlo", color: "#00d4ff" },
   { id: "td", label: "Diferencia Temporal", color: "#34d399" },
@@ -611,6 +612,234 @@ export const ALGORITHMS: AlgorithmInfo[] = [
       ],
     },
   },
+  {
+    id: "bandit",
+    name: "Multi-Armed Bandit",
+    shortName: "MAB",
+    category: "bandit",
+    envName: "Custom",
+    envLabel: "10-Armed Bandit",
+    icon: "🎰",
+    description: "Algoritmo básico para explorar y explotar en problemas de un solo estado.",
+    params: [
+      {
+        key: "k_arms",
+        label: "K (Brazos)",
+        min: 2,
+        max: 100,
+        step: 1,
+        default: 10,
+        description: "Número de acciones posibles"
+      },
+      {
+        key: "epsilon",
+        label: "ε (Exploración)",
+        min: 0.0,
+        max: 1.0,
+        step: 0.01,
+        default: 0.1,
+        description: "Probabilidad de exploración"
+      },
+      {
+        key: "episodes",
+        label: "Pasos",
+        min: 100,
+        max: 10000,
+        step: 100,
+        default: 1000,
+        description: "Número de pasos de interacción"
+      }
+    ],
+    theory: {
+      title: "Multi-Armed Bandits (Sutton & Barto, Cap. 2)",
+      sections: [
+        {
+          heading: "Idea Central",
+          text: "El problema del Multi-Armed Bandit modela situaciones de toma de decisión de un solo paso donde cada acción (brazo) tiene una distribución de recompensa desconocida."
+        }
+      ]
+    }
+  },
+  {
+    id: "dynaq",
+    name: "Dyna-Q",
+    shortName: "Dyna-Q",
+    category: "td",
+    envName: "Taxi-v3",
+    envLabel: "Taxi",
+    icon: "🚕",
+    description: "Método de aprendizaje basado en modelos que integra Q-Learning directo con planificación utilizando un modelo simulado del entorno.",
+    params: [
+      {
+        key: "alpha",
+        label: "α (Tasa de aprendizaje)",
+        min: 0.01,
+        max: 1,
+        step: 0.01,
+        default: 0.1,
+        description: "Tamaño del paso de actualización"
+      },
+      {
+        key: "gamma",
+        label: "γ (Descuento)",
+        min: 0.1,
+        max: 1,
+        step: 0.01,
+        default: 0.99,
+        description: "Factor de descuento"
+      },
+      {
+        key: "epsilon",
+        label: "ε (Exploración)",
+        min: 0.01,
+        max: 1,
+        step: 0.01,
+        default: 0.1,
+        description: "Probabilidad de exploración"
+      },
+      {
+        key: "planning_steps",
+        label: "Pasos de Planificación",
+        min: 0,
+        max: 100,
+        step: 1,
+        default: 10,
+        description: "Número de actualizaciones de planificación por paso real"
+      },
+      {
+        key: "episodes",
+        label: "Episodios",
+        min: 10,
+        max: 1000,
+        step: 10,
+        default: 200,
+        description: "Número de episodios"
+      }
+    ],
+    theory: {
+      title: "Arquitectura Dyna (Sutton & Barto, Cap. 8)",
+      sections: [
+        {
+          heading: "Idea Central",
+          text: "Dyna-Q aprende simultáneamente un modelo del entorno y una política. Por cada paso real, el algoritmo realiza múltiples pasos simulados ('planificación') a partir de experiencias pasadas para acelerar el aprendizaje."
+        }
+      ]
+    }
+  },
+  {
+    id: "ppo",
+    name: "Proximal Policy Optimization",
+    shortName: "PPO",
+    category: "approx",
+    envName: "LunarLanderContinuous-v3",
+    envLabel: "Lunar Lander Cont.",
+    icon: "🎯",
+    description: "Algoritmo de gradiente de política avanzado que usa una función de pérdida acortada (clipped) para evitar actualizaciones destructivamente grandes de la política.",
+    params: [
+      {
+        key: "lr",
+        label: "Learning Rate",
+        min: 0.0001,
+        max: 0.01,
+        step: 0.0001,
+        default: 0.0003,
+        description: "Tasa de aprendizaje"
+      },
+      {
+        key: "gamma",
+        label: "γ (Descuento)",
+        min: 0.9,
+        max: 1.0,
+        step: 0.01,
+        default: 0.99,
+        description: "Factor de descuento"
+      },
+      {
+        key: "epsilon_clip",
+        label: "ε (Clip)",
+        min: 0.1,
+        max: 0.3,
+        step: 0.01,
+        default: 0.2,
+        description: "Rango de clipping para la política"
+      },
+      {
+        key: "episodes",
+        label: "Episodios",
+        min: 50,
+        max: 5000,
+        step: 50,
+        default: 500,
+        description: "Número total de episodios"
+      }
+    ],
+    theory: {
+      title: "Proximal Policy Optimization (Schulman et al., 2017)",
+      sections: [
+        {
+          heading: "Idea Central",
+          text: "PPO busca la estabilidad de Trust Region Policy Optimization (TRPO) pero con una implementación mucho más simple al acortar la probabilidad de las acciones para que no cambien demasiado en una sola actualización."
+        }
+      ]
+    }
+  },
+  {
+    id: "a2c",
+    name: "Advantage Actor-Critic",
+    shortName: "A2C",
+    category: "approx",
+    envName: "Ant-v4",
+    envLabel: "Ant",
+    icon: "🐜",
+    description: "Combina gradiente de política (Actor) con aproximación de función de valor (Critic) usando la Ventaja (Advantage) para reducir varianza.",
+    params: [
+      {
+        key: "lr",
+        label: "Learning Rate",
+        min: 0.0001,
+        max: 0.01,
+        step: 0.0001,
+        default: 0.0003,
+        description: "Tasa de aprendizaje"
+      },
+      {
+        key: "gamma",
+        label: "γ (Descuento)",
+        min: 0.9,
+        max: 1.0,
+        step: 0.01,
+        default: 0.99,
+        description: "Factor de descuento"
+      },
+      {
+        key: "entropy_coef",
+        label: "Coef. Entropía",
+        min: 0.001,
+        max: 0.1,
+        step: 0.001,
+        default: 0.01,
+        description: "Fomenta la exploración"
+      },
+      {
+        key: "episodes",
+        label: "Episodios",
+        min: 50,
+        max: 2000,
+        step: 50,
+        default: 200,
+        description: "Número total de episodios"
+      }
+    ],
+    theory: {
+      title: "Advantage Actor-Critic",
+      sections: [
+        {
+          heading: "Idea Central",
+          text: "El Actor actualiza la política en la dirección sugerida por el Critic. El Critic estima el valor del estado para calcular la Ventaja (Advantage), reduciendo enormemente la varianza comparado con REINFORCE."
+        }
+      ]
+    }
+  }
 ];
 
 export function getAlgorithmById(id: string): AlgorithmInfo | undefined {
