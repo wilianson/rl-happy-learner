@@ -25,7 +25,9 @@ export default function TheorySection({ algorithm }: TheorySectionProps) {
   return (
     <section className="theory-section" id="theory-section">
       <div className="theory-header">
-        <span className="theory-icon">{algorithm.icon}</span>
+        <span className="theory-icon" style={{ background: 'transparent', border: 'none', overflow: 'hidden', borderRadius: '50%' }}>
+          <img src="/assets/happy_4.png" alt="Happy studying" style={{ width: '56px', height: '56px', objectFit: 'cover', transform: 'scale(1.2)', mixBlendMode: 'multiply' }} />
+        </span>
         <div>
           <h2 className="theory-title">{theory.title}</h2>
           <p className="theory-env">

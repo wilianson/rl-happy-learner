@@ -43,7 +43,7 @@ export const ALGORITHMS: AlgorithmInfo[] = [
     category: "dp",
     envName: "FrozenLake-v1",
     envLabel: "FrozenLake 4×4",
-    icon: "🔄",
+    icon: "",
     description:
       "Alterna entre evaluar una política (encontrando su función de valor) y mejorarla (haciendo greedy sobre el valor encontrado) hasta convergencia.",
     params: [
@@ -100,7 +100,7 @@ export const ALGORITHMS: AlgorithmInfo[] = [
     category: "dp",
     envName: "FrozenLake-v1",
     envLabel: "FrozenLake 4×4",
-    icon: "⚡",
+    icon: "",
     description:
       "Combina evaluación y mejora en un solo paso de actualización usando el operador de optimalidad de Bellman. Más eficiente que Policy Iteration.",
     params: [
@@ -156,7 +156,7 @@ export const ALGORITHMS: AlgorithmInfo[] = [
     category: "mc",
     envName: "Blackjack-v1",
     envLabel: "Blackjack",
-    icon: "🎲",
+    icon: "",
     description:
       "Aprende directamente de episodios completos de experiencia. No requiere conocer la dinámica del entorno (model-free). Usa promedios de retornos para estimar Q.",
     params: [
@@ -225,7 +225,7 @@ export const ALGORITHMS: AlgorithmInfo[] = [
     category: "td",
     envName: "CliffWalking-v1",
     envLabel: "Cliff Walking",
-    icon: "🏃",
+    icon: "",
     description:
       "Método TD on-policy que actualiza Q(s,a) usando la siguiente acción realmente tomada (S,A,R,S',A'). Tiende a aprender políticas más conservadoras.",
     params: [
@@ -299,7 +299,7 @@ export const ALGORITHMS: AlgorithmInfo[] = [
     category: "td",
     envName: "CliffWalking-v1",
     envLabel: "Cliff Walking",
-    icon: "🧠",
+    icon: "",
     description:
       "Método TD off-policy que actualiza Q(s,a) usando la mejor acción posible en el estado siguiente, independientemente de la acción realmente tomada. Converge a la política óptima.",
     params: [
@@ -373,7 +373,7 @@ export const ALGORITHMS: AlgorithmInfo[] = [
     category: "approx",
     envName: "MountainCar-v0",
     envLabel: "Mountain Car",
-    icon: "📈",
+    icon: "",
     description:
       "Extiende Q-Learning a espacios de estados continuos usando una aproximación lineal de la función de valor con pesos entrenables.",
     params: [
@@ -434,7 +434,7 @@ export const ALGORITHMS: AlgorithmInfo[] = [
         },
         {
           heading: "Deadly Triad",
-          text: "La combinación de (1) aproximación de funciones, (2) bootstrapping y (3) aprendizaje off-policy puede causar inestabilidad — conocida como la **Tríada Mortal** (Deadly Triad). Métodos como DQN abordan esto con técnicas como target networks y experience replay.",
+          text: "La combinación de (1) aproximación de funciones, (2) bootstrapping y (3) aprendizaje off-policy puede causar inestabilidad - conocida como la **Tríada Mortal** (Deadly Triad). Métodos como DQN abordan esto con técnicas como target networks y experience replay.",
         },
       ],
     },
@@ -446,7 +446,7 @@ export const ALGORITHMS: AlgorithmInfo[] = [
     category: "approx",
     envName: "CartPole-v1",
     envLabel: "CartPole",
-    icon: "🤖",
+    icon: "",
     description:
       "Usa una red neuronal profunda para aproximar Q*. Incorpora Experience Replay y Target Network para estabilizar el entrenamiento.",
     params: [

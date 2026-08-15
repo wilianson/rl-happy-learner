@@ -52,10 +52,10 @@ async def websocket_endpoint(websocket: WebSocket, algorithm: str):
     async def emit_state(episode, step, frame, reward, q_values=None, done=False):
         data = {
             "type": "update",
-            "episode": episode,
-            "step": step,
-            "reward": reward,
-            "done": done
+            "episode": int(episode),
+            "step": int(step),
+            "reward": float(reward),
+            "done": bool(done)
         }
         if frame is not None:
             data["frame"] = frame_to_base64(frame)

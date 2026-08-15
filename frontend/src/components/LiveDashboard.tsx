@@ -133,7 +133,7 @@ export default function LiveDashboard({
     return (
       <div className="heatmap-container">
         <h3 className="heatmap-title">
-          Función Q — max<sub>a</sub> Q(s,a)
+          Función Q - max<sub>a</sub> Q(s,a)
         </h3>
         <div
           className="heatmap-grid"
@@ -231,10 +231,8 @@ export default function LiveDashboard({
             {currentFrame ? (
               <canvas ref={canvasRef} className="video-canvas" />
             ) : (
-              <div className="video-placeholder">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" opacity="0.3">
-                  <polygon points="5 3 19 12 5 21 5 3"/>
-                </svg>
+              <div className="video-placeholder" style={{ overflow: 'visible' }}>
+                <img src="/assets/happy_5.png" alt="Happy exploring" style={{ height: '80px', width: '80px', objectFit: 'cover', borderRadius: '50%', transform: 'scale(1.1)', mixBlendMode: 'multiply', opacity: 0.95 }} />
                 <p>Inicia el entrenamiento para ver al agente</p>
               </div>
             )}
@@ -253,7 +251,8 @@ export default function LiveDashboard({
             {rewardHistory.length > 0 ? (
               <Line data={chartData} options={chartOptions} />
             ) : (
-              <div className="chart-placeholder">
+              <div className="chart-placeholder flex flex-col gap-3" style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center', overflow: 'visible' }}>
+                <img src="/assets/happy_2.png" alt="Happy pointing at chart" style={{ height: '80px', width: '80px', objectFit: 'cover', borderRadius: '50%', transform: 'scale(1.1)', mixBlendMode: 'multiply', opacity: 0.95 }} />
                 <p>Los datos de recompensa se graficarán aquí en tiempo real</p>
               </div>
             )}

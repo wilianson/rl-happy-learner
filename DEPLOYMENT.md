@@ -1,4 +1,4 @@
-# 🚀 Guía de Despliegue — Happy RL Trainer
+#  Guía de Despliegue - Happy RL Trainer
 
 > **Powered by FiloLabs** | Identidad UTEC
 
@@ -6,7 +6,7 @@ Guía paso a paso para compilar, ejecutar y desplegar la plataforma educativa in
 
 ---
 
-## 📋 Requisitos Previos
+##  Requisitos Previos
 
 | Herramienta | Versión mínima | Descarga |
 |-------------|---------------|----------|
@@ -19,7 +19,7 @@ Guía paso a paso para compilar, ejecutar y desplegar la plataforma educativa in
 
 ---
 
-## 🖥️ Ejecución Local
+##  Ejecución Local
 
 ### 1. Clonar / Descargar el proyecto
 
@@ -57,6 +57,8 @@ cd frontend
 npm install
 ```
 
+> **Nota**: El frontend ahora utiliza Tailwind CSS para gestionar la identidad visual UTEC y los estilos de la mascota "Happy". La instalación mediante `npm install` configurará automáticamente todas las dependencias necesarias.
+
 ### 5. Iniciar el servidor de desarrollo Frontend
 
 ```bash
@@ -72,7 +74,7 @@ Abre tu navegador en `http://localhost:5173`. Selecciona un algoritmo, ajusta lo
 
 ---
 
-## 🏗️ Compilación para Producción
+##  Compilación para Producción
 
 ### Frontend (Build estático)
 
@@ -89,7 +91,7 @@ No requiere compilación. Se ejecuta directamente con `uvicorn`.
 
 ---
 
-## ☁️ Despliegue en la Nube
+##  Despliegue en la Nube
 
 ### Opción A: Render.com (Recomendado)
 
@@ -148,7 +150,7 @@ services:
 
 ---
 
-## ⚙️ Variables de Configuración
+##  Variables de Configuración
 
 | Variable | Descripción | Default |
 |----------|-------------|---------|
@@ -163,9 +165,9 @@ const WS_BASE_URL = "wss://tu-dominio.com/ws/train";
 
 ---
 
-## 🧪 Tests Automatizados
+##  Tests Automatizados
 
-### Backend — pytest
+### Backend - pytest
 
 ```bash
 # Desde la raíz del proyecto
@@ -176,7 +178,7 @@ Tests incluidos:
 - `test_epsilon_decay_logic`: Verifica que el decaimiento ε multiplicativo funcione correctamente.
 - `test_dqn_config_loading`: Verifica la carga de configuración del DQN.
 
-### Frontend — Vitest
+### Frontend - Vitest
 
 ```bash
 # Desde la carpeta frontend/
@@ -189,7 +191,7 @@ Tests incluidos (5 en total en `src/utils/__tests__/heatmap.test.ts`):
 
 ---
 
-## 🐛 Solución de Problemas
+##  Solución de Problemas
 
 | Problema | Solución |
 |----------|----------|
@@ -204,7 +206,7 @@ Tests incluidos (5 en total en `src/utils/__tests__/heatmap.test.ts`):
 
 ---
 
-## 📁 Estructura del Proyecto
+##  Estructura del Proyecto
 
 ```
 rl_course_material/

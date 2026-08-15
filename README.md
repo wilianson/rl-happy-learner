@@ -1,10 +1,10 @@
-# 🎓 Happy RL Trainer — Plataforma Interactiva de Aprendizaje por Refuerzo
+# Happy RL Trainer - Plataforma Interactiva de Aprendizaje por Refuerzo
 
-> **Powered by FiloLabs** | Identidad UTEC
+> **Powered by FiloLabs** | Identidad Visual UTEC
 
-Plataforma educativa interactiva para aprender Reinforcement Learning (RL) de forma práctica. Incluye un backend FastAPI con WebSockets para entrenamiento en tiempo real y un frontend React/Vite con visualizaciones dinámicas.
+Plataforma educativa interactiva para aprender Reinforcement Learning (RL) de forma práctica. Incluye un backend FastAPI con WebSockets para entrenamiento en tiempo real y un frontend React/Vite rediseñado con Tailwind CSS, alineado a la identidad visual de UTEC y guiado por nuestra mascota "Happy".
 
-## 🚀 Plataforma Web (Happy RL Trainer)
+## Plataforma Web (Happy RL Trainer)
 
 La plataforma incluye **11 algoritmos** organizados en 5 categorías:
 
@@ -18,15 +18,16 @@ La plataforma incluye **11 algoritmos** organizados en 5 categorías:
 
 ### Características
 
-- 🎥 **Visualización en tiempo real** del agente en el entorno (vía WebSocket)
-- 📈 **Gráfica de recompensa** por episodio en vivo
-- 🔥 **Heatmap Q-values** con normalización correcta (azul oscuro → rojo)
-- 📐 **Teoría matemática** renderizada con KaTeX para cada algoritmo
-- 🎛️ **Hiperparámetros ajustables** mediante sliders interactivos
+- **Identidad UTEC y Mascota "Happy"**: Nueva interfaz visual clara implementada con Tailwind CSS y glassmorphism.
+- **Visualización en tiempo real** del agente en el entorno (vía WebSocket)
+- **Gráfica de recompensa** por episodio en vivo
+- **Heatmap Q-values** con normalización correcta (azul oscuro . rojo)
+- **Teoría matemática** renderizada con KaTeX para cada algoritmo
+- **Hiperparámetros ajustables** mediante sliders interactivos
 
 Para instrucciones de despliegue, ver [`DEPLOYMENT.md`](./DEPLOYMENT.md).
 
-## 📚 Scripts de Estudio (Standalone)
+##  Scripts de Estudio (Standalone)
 
 1. **`01_gymnasium_intro.py`**: Introducción básica a la API de Gymnasium.
 2. **`02_q_learning.py`**: Q-Learning tabular en `CliffWalking-v1`.
@@ -38,7 +39,7 @@ pip install -r requirements.txt
 python 01_gymnasium_intro.py
 ```
 
-## 🧪 Tests Automatizados
+##  Tests Automatizados
 
 ### Backend (pytest)
 
@@ -58,7 +59,7 @@ Los tests cubren:
 - Normalización del heatmap de Q-values (incluyendo el caso de rango cero)
 - Interpolación de colores para el heatmap
 
-## ⚙️ DQN — Epsilon Decay
+##  DQN . Epsilon Decay
 
 El parámetro `ε Decay` en DQN usa un **factor multiplicativo** (rango 0.90–1.0):
 

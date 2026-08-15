@@ -32,8 +32,8 @@ export default function Sidebar({
     <aside className="sidebar" id="sidebar">
       {/* Logo */}
       <div className="sidebar-logo">
-        <div className="sidebar-logo-icon">
-          <span className="sidebar-logo-glyph">H</span>
+        <div className="sidebar-logo-icon" style={{ background: 'transparent', border: 'none', boxShadow: 'none', overflow: 'hidden', borderRadius: '50%' }}>
+          <img src="/assets/happy_1.png" alt="Happy Mascot" style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'scale(1.2)', mixBlendMode: 'multiply' }} />
         </div>
         <div className="sidebar-logo-text">
           <h1 className="sidebar-logo-title">Happy RL</h1>

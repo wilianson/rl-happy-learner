@@ -1,27 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* ═══════════════════════════════════════════════════
-   Happy RL Trainer — Design System
+   Happy RL Trainer - Design System
    UTEC Brand Identity · FiloLabs
    Premium dark theme with glassmorphism
    ═══════════════════════════════════════════════════ */
 
-/* ─── CSS Custom Properties — UTEC Brand Identity ─── */
+/* ─── CSS Custom Properties - UTEC Brand Identity ─── */
 :root {
-  /* Core palette — Dark background */
-  --bg-primary: #080d17;
-  --bg-secondary: #0c1220;
-  --bg-tertiary: #121a2c;
+  /* Core palette - Dark background */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F3F8FF;
+  --bg-tertiary: #CADAEF;
   --bg-surface: rgba(12, 18, 32, 0.8);
   --bg-glass: rgba(0, 61, 165, 0.05);
   --bg-glass-hover: rgba(0, 61, 165, 0.1);
 
   /* UTEC Brand Colors */
-  --utec-blue: #003DA5;
-  --utec-blue-light: #0052cc;
+  --utec-blue: #00BFFF;
+  --utec-blue-light: #BFF0FF;
   --utec-blue-bright: #0066ff;
   --utec-green: #41B549;
   --utec-green-light: #52c95a;
 
-  /* Accent — UTEC palette */
+  /* Accent - UTEC palette */
   --accent-primary: #003DA5;
   --accent-secondary: #41B549;
   --accent-tertiary: #00a8e8;
@@ -30,7 +34,7 @@
   --accent-error: #f87171;
   --accent-highlight: #0066ff;
 
-  /* Gradients — UTEC */
+  /* Gradients - UTEC */
   --gradient-accent: linear-gradient(135deg, #003DA5 0%, #0066ff 50%, #41B549 100%);
   --gradient-blue: linear-gradient(135deg, #003DA5 0%, #0066ff 100%);
   --gradient-green: linear-gradient(135deg, #2d9e35 0%, #41B549 100%);
@@ -39,9 +43,9 @@
   --gradient-glow: radial-gradient(ellipse at center, rgba(0, 61, 165, 0.2), transparent 70%);
 
   /* Text */
-  --text-primary: #eef2ff;
-  --text-secondary: #94a3c0;
-  --text-tertiary: #4a5880;
+  --text-primary: #231F20;
+  --text-secondary: #5F6480;
+  --text-tertiary: #5F6480;
   --text-accent: #5b8eff;
 
   /* Borders */
@@ -106,16 +110,17 @@ body {
 /* ─── Scrollbar ─── */
 ::-webkit-scrollbar {
   width: 6px;
+  height: 4px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.18);
 }
 
 /* ─── KaTeX overrides ─── */

@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════
-   Happy RL Trainer — Component Styles
+   Happy RL Trainer - Component Styles
    UTEC Brand Identity · FiloLabs
    ═══════════════════════════════════════════════════ */
 
@@ -37,7 +37,7 @@
 .sidebar-logo-glyph {
   font-size: 22px;
   font-weight: 700;
-  color: white;
+  color: #231F20;
   font-family: var(--font-mono);
 }
 
@@ -276,7 +276,7 @@
   border: none;
   border-radius: var(--radius-md);
   background: var(--gradient-blue);
-  color: white;
+  color: #231F20;
   font-size: 14px;
   font-weight: 600;
   font-family: var(--font-sans);
@@ -337,7 +337,7 @@
   z-index: 0;
 }
 
-/* UTEC accent corner glow — green tint */
+/* UTEC accent corner glow - green tint */
 .bg-glow::after {
   content: '';
   position: absolute;
